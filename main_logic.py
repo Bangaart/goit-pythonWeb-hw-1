@@ -129,8 +129,7 @@ def main():
         elif command == "phone":
             view.show_message(get_phone(args, book))
         elif command == "all":
-            a = [str(r) for r in book.values()]
-            print(a)
+            view.show_message([str(r) for r in book.values()])
         elif command == "add-birthday":
             view.show_message(add_birthday(args, book))
         elif command == "show-birthday":
