@@ -106,6 +106,7 @@ def load_data(filename="addressbook.pkl"):
         return pickle.load(file)
 
 def main():
+    view = ConsoleView()
     try:
         book = load_data()
     except FileNotFoundError:
@@ -117,24 +118,27 @@ def main():
 
         if command in ["exit", "close"]:
             save_data(book)
-            print("Good bye")
+            view.show_message("Good bye")
             break
         elif command == "hello":
-            print("How can i help you")
+            view.show_message("How can i help you")
         elif command == "add":
-            print(add_command(args, book))
+            view.show_message(add_command(args, book))
         elif command == "change":
-            print(change_phone(args, book))
+            view.show_message(change_phone(args, book))
         elif command == "phone":
-            print(get_phone(args, book))
+            view.show_message(get_phone(args, book))
         elif command == "all":
-            print(get_all(book))
+            a = [str(r) for r in book.values()]
+            print(a)
         elif command == "add-birthday":
-            print(add_birthday(args, book))
+            view.show_message(add_birthday(args, book))
         elif command == "show-birthday":
-            print(show_birthday(args, book))
+            view.show_message(show_birthday(args, book))
         elif command == "birthdays":
-            print(birthdays(book))
+            view.show_message(birthdays(book))
+        elif command == "help":
+            view.show_help()
         else:
             print("Invalid command or empty input")
 
